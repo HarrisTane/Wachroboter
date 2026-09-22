@@ -78,7 +78,6 @@ Der Service-Aufruf ist **asynchron**. Ein blockierender Aufruf wäre hier ein De
 | `/waypoints_done` | `std_msgs/msg/Bool` (TRANSIENT_LOCAL) | `waypoint_driver` | keiner Node, die Statemachines fragen stattdessen `isFinished()` direkt ab |
 | `/tf` | `tf2_msgs/msg/TFMessage` | `fake_odom_node` (nur im Test) | RViz |
 
-`/scan` benutzt BEST_EFFORT. Wer dort mit Standard-QoS lauscht, bekommt **keine einzige Nachricht** — im Code steht deshalb `rclcpp::SensorDataQoS()`.
 
 ### Service
 
