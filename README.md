@@ -137,16 +137,6 @@ string message      # Antwort: Begründung im Klartext
 | `safety_angle_deg` | Halber Öffnungswinkel des überwachten Sektors vorne | `30.0` | ° |
 | `control_frequency` | Takt der Regelschleife | `20.0` | Hz |
 
-### `fake_robot` (nur Simulation)
-
-| Node | Parameter | Bedeutung | Standard | Einheit |
-|---|---|---|---|---|
-| `fake_odom_node` | `publish_rate` | Rate von `/odom` und TF | `50.0` | Hz |
-| `fake_scan_node` | `publish_rate` | Rate von `/scan` | `10.0` | Hz |
-| `fake_scan_node` | `range_value` | Distanz auf allen Strahlen | `10.0` | m |
-
-**Wichtig zu allen Wegpunkten:** Sie gelten **relativ zur Startpose** des jeweiligen Roboters, nicht absolut. `x` zeigt nach vorne, `y` nach links — aus Sicht des Roboters in dem Moment, in dem er die erste `/odom`-Nachricht bekommt. 
-
 ---
 
 ## 6. Installation
