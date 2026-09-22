@@ -71,12 +71,11 @@ Der Service-Aufruf ist **asynchron**. Ein blockierender Aufruf wäre hier ein De
 
 | Name | Typ | Published von | Subscribed von |
 |---|---|---|---|
-| `/odom` | `nav_msgs/msg/Odometry` | Volksbot-Basistreiber (im Test `fake_odom_node`) | `waypoint_driver` |
-| `/scan` | `sensor_msgs/msg/LaserScan` (BEST_EFFORT) | Laserscanner · im Test `fake_scan_node` | `waypoint_driver` |
-| `/cmd_vel` | `geometry_msgs/msg/Twist` | `waypoint_driver` | Volksbot-Basistreiber (im Test `fake_odom_node`) |
+| `/odom` | `nav_msgs/msg/Odometry` | Volksbot-Basistreiber | `waypoint_driver` |
+| `/scan` | `sensor_msgs/msg/LaserScan` (BEST_EFFORT) | Laserscanner | `waypoint_driver` |
+| `/cmd_vel` | `geometry_msgs/msg/Twist` | `waypoint_driver` | Volksbot-Basistreiber |
 | `/alarm` | `std_msgs/msg/String` | `guard_robot` | von keiner Node, zum Mitlesen per `ros2 topic echo` |
-| `/waypoints_done` | `std_msgs/msg/Bool` (TRANSIENT_LOCAL) | `waypoint_driver` | keiner Node, die Statemachines fragen stattdessen `isFinished()` direkt ab |
-| `/tf` | `tf2_msgs/msg/TFMessage` | `fake_odom_node` (nur im Test) | RViz |
+| `/waypoints_done` | `std_msgs/msg/Bool` | `waypoint_driver` | keiner Node, die Statemachines fragen stattdessen `isFinished()` direkt ab |
 
 
 ### Service
