@@ -1,0 +1,74 @@
+# =====================================================================
+# Parameter fuer den BESUCHER-ROBOTER (visitor_robot)
+# Das ist die Datei, die im Flur angepasst wird.
+# =====================================================================
+#
+# "/**" bedeutet: gilt fuer jeden Node in jedem Namespace.
+# Das ist Absicht! In diesem Prozess laufen ZWEI Nodes
+# ("visitor_robot" und "waypoint_driver"). Jeder Node nimmt sich aus der
+# Liste unten nur die Parameter, die er selbst kennt - der Rest wird
+# stillschweigend ignoriert. Dadurch funktioniert die Datei auch dann,
+# wenn die Nodes in einem Namespace (z.B. /visitor) laufen.
+
+/**:
+  ros__parameters:
+
+    # -----------------------------------------------------------------
+    # Teil 1: Parameter des Besuchers (Node "visitor_robot")
+    # -----------------------------------------------------------------
+
+    # Codewort, das an den Wachroboter geschickt wird.
+    # "apfelkuchen" = richtig, alles andere = falsch -> Alarm.
+    # Kann beim Start auch ueberschrieben werden:
+    #   ros2 launch wachroboter_bringup visitor.launch.py codeword:=banane
+    codeword: "apfelkuchen"
+
+    # Name des Services beim Wachroboter.
+    # Fuehrender "/" = absoluter Name, bleibt also global gueltig,
+    # auch wenn der Roboter in einem Namespace laeuft.
+    service_name: "/check_codeword"
+
+    # Wegpunkte bis kurz VOR den Wachroboter, relativ zur STARTPOSE
+    # des Besuchers. Flache Liste: x1, y1, x2, y2, ...
+    wache_waypoints: [1.5, 0.0]
+
+    # Wegpunkte zur Zielposition 1 (Lager).
+    # WICHTIG: ebenfalls relativ zur STARTPOSE, nicht relativ zur Wache!
+    lager_waypoints: [1.5, 2.0, 0.0, 2.0]
+
+    # Maximale Wartezeit auf die Service-Antwort (Sekunden)
+    service_timeout: 5.0
+
+    # Abstand zwischen zwei "Service nicht verfuegbar"-Meldungen (Sekunden)
+    service_retry_interval: 2.0
+
+    # Takt der Zustandsmaschine in Hz
+    state_frequency: 10.0
+
+    # -----------------------------------------------------------------
+    # Teil 2: Parameter der Fahrlogik (Node "waypoint_driver")
+    # -----------------------------------------------------------------
+    # ACHTUNG: "auto_start" hier NICHT setzen! Der Besucher setzt das
+    # selbst auf false und steuert das Fahren ueber seine Statemachine.
+
+    # Verstaerkung des Drehreglers (groesser = dreht schneller)
+    kp_angular: 1.5
+    # Verstaerkung des Fahrreglers (groesser = beschleunigt staerker)
+    kp_linear: 0.6
+
+    # Maximale Geschwindigkeiten - im Flur ggf. verkleinern!
+    max_linear_speed: 0.2     # m/s
+    max_angular_speed: 0.5    # rad/s
+
+    # Wie nah muss der Roboter am Wegpunkt sein, damit er als erreicht gilt
+    goal_tolerance: 0.15      # Meter
+    # Wie genau muss er ausgerichtet sein, bevor er losfaehrt
+    angle_tolerance_deg: 6.0  # Grad
+
+    # Notstopp: Hindernis naeher als safety_distance im vorderen
+    # +/- safety_angle_deg Bereich -> Roboter haelt an
+    safety_distance: 0.4      # Meter
+    safety_angle_deg: 30.0    # Grad
+
+    # Takt der Regelschleife in Hz
+    control_frequency: 20.0

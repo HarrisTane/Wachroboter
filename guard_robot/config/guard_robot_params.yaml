@@ -1,0 +1,47 @@
+# Parameter-Datei fuer den Wachroboter.
+# Achtung: In EINEM Prozess laufen zwei Nodes -> zwei Bloecke.
+
+guard_robot:
+  ros__parameters:
+    # Liste der gueltigen Codewoerter (string array)
+    valid_codewords: ["apfelkuchen", "nordlicht"]
+
+    # Gross-/Kleinschreibung beim Vergleich beachten?
+    case_sensitive: false
+
+    # Wegpunkte zur Zielposition 2 (Polizei), relativ zur Startpose:
+    # x1, y1, x2, y2, ...   (Meter; x = vorwaerts, y = links)
+    police_waypoints: [2.0, 0.0, 2.0, 2.0]
+
+    # Wie lange wird Alarm geschlagen, bevor losgefahren wird (Sekunden)
+    alarm_duration: 3.0
+
+    # Abstand zwischen zwei Alarm-Nachrichten (Sekunden)
+    alarm_interval: 0.5
+
+    # Text der Alarm-Nachricht auf dem Topic /alarm
+    alarm_text: "ALARM: Falsches Codewort! Unbefugte Person erkannt."
+
+    # Takt der Zustandsmaschine in Hz
+    state_frequency: 10.0
+
+waypoint_driver:
+  ros__parameters:
+    # WICHTIG: "auto_start" hier NICHT setzen.
+    # Der Wachroboter setzt das selbst auf false und gibt das Fahren
+    # erst nach dem Alarm frei.
+
+    # Reglerparameter fuer die Fahrt
+    kp_angular: 1.5
+    kp_linear: 0.6
+    max_linear_speed: 0.2
+    max_angular_speed: 0.5
+    goal_tolerance: 0.15
+    angle_tolerance_deg: 6.0
+
+    # Notstopp: Hindernis naeher als 0.4 m im vorderen +/- 30 Grad Bereich
+    safety_distance: 0.4
+    safety_angle_deg: 30.0
+
+    # Takt der Regelschleife in Hz
+    control_frequency: 20.0

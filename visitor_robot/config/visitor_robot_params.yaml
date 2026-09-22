@@ -1,0 +1,49 @@
+# Parameter-Datei fuer den Besucher-Roboter.
+# Achtung: In EINEM Prozess laufen zwei Nodes -> zwei Bloecke.
+
+visitor_robot:
+  ros__parameters:
+    # Codewort, das an den Wachroboter geschickt wird.
+    # Zum Testen umschalten: "apfelkuchen" (richtig) / "banane" (falsch)
+    codeword: "apfelkuchen"
+
+    # Name des Services beim Wachroboter (absoluter Name!)
+    service_name: "/check_codeword"
+
+    # Wegpunkte bis kurz vor den Wachroboter, relativ zur Startpose:
+    # x1, y1, x2, y2, ...   (Meter; x = vorwaerts, y = links)
+    wache_waypoints: [1.5, 0.0]
+
+    # Wegpunkte zur Zielposition 1 (Lager), ebenfalls relativ zur STARTPOSE
+    # (nicht relativ zur Wache!)
+    lager_waypoints: [1.5, 2.0, 0.0, 2.0]
+
+    # Maximale Wartezeit auf die Service-Antwort in Sekunden
+    service_timeout: 5.0
+
+    # Abstand zwischen zwei "Service nicht verfuegbar"-Meldungen in Sekunden
+    service_retry_interval: 2.0
+
+    # Takt der Zustandsmaschine in Hz
+    state_frequency: 10.0
+
+waypoint_driver:
+  ros__parameters:
+    # WICHTIG: "auto_start" hier NICHT setzen.
+    # Der Besucher-Roboter setzt das selbst auf false und steuert das Fahren
+    # ueber seine Zustandsmaschine.
+
+    # Reglerparameter fuer die Fahrt
+    kp_angular: 1.5
+    kp_linear: 0.6
+    max_linear_speed: 0.2
+    max_angular_speed: 0.5
+    goal_tolerance: 0.15
+    angle_tolerance_deg: 6.0
+
+    # Notstopp: Hindernis naeher als 0.4 m im vorderen +/- 30 Grad Bereich
+    safety_distance: 0.4
+    safety_angle_deg: 30.0
+
+    # Takt der Regelschleife in Hz
+    control_frequency: 20.0

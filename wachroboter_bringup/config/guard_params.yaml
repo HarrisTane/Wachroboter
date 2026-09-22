@@ -1,0 +1,69 @@
+# =====================================================================
+# Parameter fuer den WACHROBOTER (guard_robot)
+# Das ist die Datei, die im Flur angepasst wird.
+# =====================================================================
+#
+# "/**" bedeutet: gilt fuer jeden Node in jedem Namespace.
+# Das ist Absicht! In diesem Prozess laufen ZWEI Nodes
+# ("guard_robot" und "waypoint_driver"). Jeder Node nimmt sich aus der
+# Liste unten nur die Parameter, die er selbst kennt - der Rest wird
+# stillschweigend ignoriert. Dadurch funktioniert die Datei auch dann,
+# wenn die Nodes in einem Namespace (z.B. /guard) laufen.
+
+/**:
+  ros__parameters:
+
+    # -----------------------------------------------------------------
+    # Teil 1: Parameter des Wachroboters (Node "guard_robot")
+    # -----------------------------------------------------------------
+
+    # Liste der gueltigen Codewoerter. Beliebig viele moeglich.
+    valid_codewords: ["apfelkuchen", "nordlicht"]
+
+    # Gross-/Kleinschreibung beim Vergleich beachten?
+    case_sensitive: false
+
+    # Wegpunkte zur Zielposition 2 (Polizei), relativ zur STARTPOSE
+    # des Wachroboters. Flache Liste: x1, y1, x2, y2, ...
+    # Meter; x = vorwaerts beim Start, y = links beim Start.
+    police_waypoints: [2.0, 0.0, 2.0, 2.0]
+
+    # Wie lange wird Alarm geschlagen, bevor losgefahren wird (Sekunden)
+    alarm_duration: 3.0
+
+    # Abstand zwischen zwei Alarm-Nachrichten (Sekunden)
+    alarm_interval: 0.5
+
+    # Text, der auf dem Topic alarm publiziert wird
+    alarm_text: "ALARM: Falsches Codewort! Unbefugte Person erkannt."
+
+    # Takt der Zustandsmaschine in Hz
+    state_frequency: 10.0
+
+    # -----------------------------------------------------------------
+    # Teil 2: Parameter der Fahrlogik (Node "waypoint_driver")
+    # -----------------------------------------------------------------
+    # ACHTUNG: "auto_start" hier NICHT setzen! Der Wachroboter setzt das
+    # selbst auf false und gibt das Fahren erst nach dem Alarm frei.
+
+    # Verstaerkung des Drehreglers (groesser = dreht schneller)
+    kp_angular: 1.5
+    # Verstaerkung des Fahrreglers (groesser = beschleunigt staerker)
+    kp_linear: 0.6
+
+    # Maximale Geschwindigkeiten - im Flur ggf. verkleinern!
+    max_linear_speed: 0.2     # m/s
+    max_angular_speed: 0.5    # rad/s
+
+    # Wie nah muss der Roboter am Wegpunkt sein, damit er als erreicht gilt
+    goal_tolerance: 0.15      # Meter
+    # Wie genau muss er ausgerichtet sein, bevor er losfaehrt
+    angle_tolerance_deg: 6.0  # Grad
+
+    # Notstopp: Hindernis naeher als safety_distance im vorderen
+    # +/- safety_angle_deg Bereich -> Roboter haelt an
+    safety_distance: 0.4      # Meter
+    safety_angle_deg: 30.0    # Grad
+
+    # Takt der Regelschleife in Hz
+    control_frequency: 20.0

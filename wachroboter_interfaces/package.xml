@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>wachroboter_interfaces</name>
+  <version>0.0.1</version>
+  <description>Interface-Paket mit dem Service CheckCodeword für das Wachroboter-Projekt</description>
+  <maintainer email="team@example.com">Wachroboter Team</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- Wird zum Bauen von .srv-Dateien benötigt -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Stellt rosidl_generate_interfaces bereit, das .srv in Code übersetzt -->
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+
+  <!-- Laufzeit-Abhängigkeit: wird gebraucht, wenn andere Pakete den Service nutzen -->
+  <exec_depend>rosidl_default_runtime</exec_depend>
+
+  <!-- Gruppiert dieses Paket in die ROS-Interface-Gruppe (für Tools/Introspection) -->
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

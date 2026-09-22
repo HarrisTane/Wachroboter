@@ -1,0 +1,9 @@
+build/
+install/
+log/
+.idea/
+*.iml
+target/
+out/
+.DS_Store
+.env
