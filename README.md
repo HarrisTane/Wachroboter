@@ -5,7 +5,7 @@
 
 ## 1. Szenario
 
-Ein **Wachroboter** steht an einer festen Stelle im Flur und wartet. Ein zweiter Roboter, der **Besucher**, fährt auf ihn zu und nennt ein Codewort — technisch ein ROS-2-Service-Aufruf über das gemeinsame WLAN.
+Ein **Wachroboter** steht an einer festen Stelle im Flur und wartet. Ein zweiter Roboter, der **Besucher**, fährt auf ihn zu und nennt ein Codewort. Technisch ein ROS-2-Service-Aufruf über das gemeinsame WLAN.
 
 | Was passiert | Technisch |
 |---|---|
