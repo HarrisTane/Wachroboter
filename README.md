@@ -227,9 +227,9 @@ Reihenfolge zählt: erst der Wachroboter, dann der Besucher. Startet der Besuche
 | `wachroboter_interfaces` | Aaron, Maxim, Harris |
 | `waypoint_driver` | Aaron, Maxim, Harris |
 | `guard_robot` | Romeo, Aaron, Maxim |
-| `visitor_robot` | Harris |
+| `visitor_robot` | Romeo |
 | `wachroboter_bringup` | Alle |
-| Repo-Setup, Projektplan, Merges | Romeo|
+| Repo-Setup, Projektplan, Merges | Harris |
 | Tests im Flur, Einmessen der Wegpunkte | Alle |
 | Präsentation und Video | Alle | 
 
